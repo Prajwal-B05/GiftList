@@ -9,16 +9,17 @@ async function main() {
   // TODO: how do we prove to the server we're on the nice list? 
   const merkleTree = new MerkleTree(niceList);
   const root = merkleTree.getRoot();
-  const name = 'Norman Block';
+  const name = "raju";
   const index = niceList.findIndex(n => n === name);
   const proof = merkleTree.getProof(index);
   console.log( verifyProof(proof, name, root) );
   
   const { data: gift } = await axios.post(`${serverUrl}/gift`, { 
-         name : "Norman Block"
+         name  , proof  
   });
 
   console.log({ gift });
 }
+
 
 main();
